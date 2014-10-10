@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace Geometriska_figurer
 {
-    class Ellipse : Shape
+    public class Ellipse : Shape
     {
-        public double Area { get; }
-        public double Perimeter { get; }
+        public override double Area 
+        {
+            get {return Math.PI * (Length / 2) * (Width / 2); }
+        }
+        public override double Perimeter {
+            get { return Math.PI * Math.Sqrt(2 * Math.Pow((Length/2), 2)+ 2 * Math.Pow((Width/2), 2)); } //om jag förstod rätt så ska Math.Pow(x, y) ge värdet x^y.
+        }
 
         public Ellipse(double length, double width): base(length, width)
         {
-
         }
     }
 }

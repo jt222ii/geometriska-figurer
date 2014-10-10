@@ -8,9 +8,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Geometriska_figurer.Program" Collapsed="true">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Geometriska_figurer.Program.ShapeType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Program.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAGAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAQBAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -28,5 +35,12 @@
       <FileName>Shape.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Enum Name="Geometriska_figurer.ShapeType">
+    <Position X="6.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ShapeType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
