@@ -46,7 +46,7 @@ namespace Geometriska_figurer
         }
         public override string ToString() //override skriver över ToString som redan finns
         {
-            return string.Format("Längd: {0,8}\nBredd: {1,8}\nOmkrets: {2,8}\nArea: {3,8}", Length, Width, Perimeter, Area);
+            return string.Format("Längd   : {0,8}\nBredd   : {1,8}\nOmkrets : {2,8}\nArea    : {3,8}", Length, Width, Perimeter, Area);
         }
     }
 }

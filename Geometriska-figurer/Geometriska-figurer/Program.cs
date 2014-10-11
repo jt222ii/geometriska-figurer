@@ -8,37 +8,41 @@ namespace Geometriska_figurer
 {
     class Program
     {
-        public enum ShapeType {Rectangle, Ellipse};
         static void Main(string[] args)
         {
             do
             {
                 ViewMenu();
                 int userSelection;
-                ConsoleKeyInfo choice = Console.ReadKey();
+                string choice = Console.ReadLine();
                 try
                 {
-                    userSelection = int.Parse(choice.ToString());
+                    userSelection = int.Parse(choice);
                 }
                 catch
                 {
                     throw new ArgumentException();
                 }
+
                 switch (userSelection)
                 {
                     case 0:
                         return;
                     case 1:
-                        //ViewShapeDetail(CreateShape(ShapeType.Ellipse);
+                        ShapeType ellipse = ShapeType.Ellipse;
+                        ViewShapeDetail(CreateShape(ellipse));
+                       
                         //starta ellipse
                         break;
                     case 2:
+                        ShapeType rectangle = ShapeType.Rectangle;
+                        ViewShapeDetail(CreateShape(rectangle));
                         //starta rectangle
                         break;
                     default:
                         Console.WriteLine("var snäll och ange ett av valen 0-2!");
                         break;
-                }
+                }              
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine("\nTryck valfri tangent för ny uträkning - ESC avslutar ");
                 Console.ResetColor();
@@ -67,10 +71,23 @@ namespace Geometriska_figurer
             Console.WriteLine("=               Rectangle              =");
             Console.WriteLine("========================================");
             break;
-
             }
+            Shape myShape = null;
             Console.ResetColor();
-            throw new ArgumentException();
+            double length = ReadDoubleGreaterThanZero(string.Format("Ange längden på din {0}:", shapeType));
+            double width = ReadDoubleGreaterThanZero(string.Format("Ange bredden på din {0}:", shapeType));
+            if (shapeType == ShapeType.Rectangle)
+            {
+                myShape = new Rectangle(length, width);
+            }
+            if (shapeType == ShapeType.Ellipse)
+            {
+                myShape = new Ellipse(length, width);
+            }
+            return myShape;
+            //Ellipse myEllipse = new Ellipse(length, width);
+            //return myEllipse;
+            
             //enum shapetype wat my schnegel?
         }
         private static void ViewMenu()
@@ -85,14 +102,14 @@ namespace Geometriska_figurer
             Console.WriteLine("\n 0. Avsluta.\n 1. Ellips\n 2. Rektangel.");
             Console.WriteLine("========================================");
         }
-        private static void ViewShapeDetail(ShapeType shapeType)
+        private static void ViewShapeDetail(Shape shape)
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("========================================");
             Console.WriteLine("=               Detaljer               =");
             Console.WriteLine("========================================");
             Console.ResetColor();
-            Console.WriteLine();//tostring
+            Console.WriteLine(shape.ToString());//tostring
             Console.WriteLine("========================================");
         }
         private static double ReadDoubleGreaterThanZero(string prompt)
@@ -105,8 +122,8 @@ namespace Geometriska_figurer
                 try
                 {
                     number = double.Parse(userInput);
-                    if (number < 0)
-                    { Console.WriteLine("FEL! Ange ett tal högre än 0!"); }
+                    if (number <= 0)
+                    { Console.WriteLine("FEL! Ange ett tal större än 0!"); }
                     else
                     { return number; }
                 }
