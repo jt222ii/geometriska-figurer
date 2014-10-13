@@ -10,21 +10,21 @@ namespace Geometriska_figurer
     {
         private double _length;
         private double _width;
-        public abstract double Area
+        public abstract double Area //hämtar värde från Rectangle eller Ellipse.cs 
         {
             get;
         }
-        public double Length
+        public double Length // När man vill ha värdet på _length så returnerar den _length vill man sätta värdet används set och kollar så att värdet man sätter inte är 0 eller mindre
         {
             get {return _length;}
             set
             {
-                if (value<0)
+                if (value<=0) //om värdet är mindre eller lika med 0 kastas ett undantag
                 {throw new ArgumentException();}
-                _length = value;
+                _length = value; //kastas inte undantaget sätts _length till sitt nya värde
             }
         }
-        public abstract double Perimeter
+        public abstract double Perimeter //hämtar värde från Rectangle.cs eller Ellipse.cs
         {
             get;
         }
@@ -49,4 +49,5 @@ namespace Geometriska_figurer
             return string.Format("Längd   : {0,8}\nBredd   : {1,8}\nOmkrets : {2,8}\nArea    : {3,8}", Length, Width, Perimeter, Area);
         }
     }
+    public enum ShapeType { Ellipse, Rectangle }
 }

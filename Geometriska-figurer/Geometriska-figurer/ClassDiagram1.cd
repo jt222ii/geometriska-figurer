@@ -29,10 +29,10 @@
     </TypeIdentifier>
   </Class>
   <Enum Name="Geometriska_figurer.ShapeType">
-    <Position X="7" Y="1.75" Width="1.5" />
+    <Position X="7" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ShapeType.cs</FileName>
+      <FileName>Shape.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

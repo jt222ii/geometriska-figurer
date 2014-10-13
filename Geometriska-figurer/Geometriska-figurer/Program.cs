@@ -29,14 +29,14 @@ namespace Geometriska_figurer
                     case 0:
                         return;
                     case 1:
-                        ShapeType ellipse = ShapeType.Ellipse;
-                        ViewShapeDetail(CreateShape(ellipse));
+                        //ShapeType ellipse = ShapeType.Ellipse;
+                        ViewShapeDetail(CreateShape(ShapeType.Ellipse));
                        
                         //starta ellipse
                         break;
                     case 2:
-                        ShapeType rectangle = ShapeType.Rectangle;
-                        ViewShapeDetail(CreateShape(rectangle));
+                        //ShapeType rectangle = ShapeType.Rectangle;
+                        ViewShapeDetail(CreateShape(ShapeType.Rectangle));
                         //starta rectangle
                         break;
                     default:
@@ -85,10 +85,6 @@ namespace Geometriska_figurer
                 myShape = new Ellipse(length, width);
             }
             return myShape;
-            //Ellipse myEllipse = new Ellipse(length, width);
-            //return myEllipse;
-            
-            //enum shapetype wat my schnegel?
         }
         private static void ViewMenu()
         {
