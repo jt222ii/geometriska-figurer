@@ -10,7 +10,7 @@ namespace Geometriska_figurer
     {
         private double _length;
         private double _width;
-        public abstract double Area //hämtar värde från Rectangle eller Ellipse.cs 
+        public abstract double Area //hämtar värde från Rectangle eller Ellipse.cs. Abstract kan inte initieras och kräver att man ska överskugga den. 
         {
             get;
         }
@@ -24,11 +24,11 @@ namespace Geometriska_figurer
                 _length = value; //kastas inte undantaget sätts _length till sitt nya värde
             }
         }
-        public abstract double Perimeter //hämtar värde från Rectangle.cs eller Ellipse.cs
+        public abstract double Perimeter //hämtar värde från Rectangle.cs eller Ellipse.cs. Abstract kan inte initieras och kräver att man ska överskugga den. 
         {
             get;
         }
-        protected Shape(double length, double width)
+        protected Shape(double length, double width) //protected kan endast nås av andra klasser som ärver av denna klassen EX) klassen Rectangle ärver av Shape och kan därför nå denna (public class Rectangle : Shape)
         {
             Length = length;
             Width = width;
@@ -44,7 +44,7 @@ namespace Geometriska_figurer
             }
 
         }
-        public override string ToString() //override skriver över ToString som redan finns
+        public override string ToString() //override skriver över ToString som redan finns i object
         {
             return string.Format("Längd   : {0,8}\nBredd   : {1,8}\nOmkrets : {2,8}\nArea    : {3,8}", Length, Width, Perimeter, Area);
         }
