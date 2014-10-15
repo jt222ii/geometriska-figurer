@@ -12,34 +12,30 @@ namespace Geometriska_figurer
         {
             do
             {
-                ViewMenu();
+                Console.Clear();
+                ViewMenu(); // skriver ut menyn
                 int userSelection;
-                string choice = Console.ReadLine();
+                string choice = Console.ReadLine(); // användaren skriver in något av valen 0-2. Kollar sedan genom en try-catch så att det är ett giltigt heltal 
                 try
                 {
-                    userSelection = int.Parse(choice);
+                    userSelection = int.Parse(choice); //gör om strängen choice till int - funkar inte det kastas ett undantag.
                 }
                 catch
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentException();      //undantag kastas
                 }
 
-                switch (userSelection)
+                switch (userSelection) //userselection är det som användaren gav ett värde ovan. 
                 {
-                    case 0:
+                    case 0: //avslutar programmet
                         return;
-                    case 1:
-                        //ShapeType ellipse = ShapeType.Ellipse;
-                        ViewShapeDetail(CreateShape(ShapeType.Ellipse));
-                       
-                        //starta ellipse
+                    case 1://Om användaren valde alternativ 1 anropas metoden ViewShapeDetail där värdena från CreateShape där man skickar med ShapeType.Ellipse skickas med.
+                        ViewShapeDetail(CreateShape(ShapeType.Ellipse)); //CreateShape körs före ViewShapeDetails.
                         break;
-                    case 2:
-                        //ShapeType rectangle = ShapeType.Rectangle;
-                        ViewShapeDetail(CreateShape(ShapeType.Rectangle));
-                        //starta rectangle
+                    case 2://Om användaren valde alternativ 2 anropas metoden ViewShapeDetail där värdena från CreateShape där man skickar med ShapeType.Rectangle skickas med.           
+                        ViewShapeDetail(CreateShape(ShapeType.Rectangle));   //CreateShape körs före ViewShapeDetails.
                         break;
-                    default:
+                    default: //körs om det inte är något av de ovanstående
                         Console.WriteLine("var snäll och ange ett av valen 0-2!");
                         break;
                 }              
@@ -54,39 +50,38 @@ namespace Geometriska_figurer
 
 
         }
-        private static Shape CreateShape(ShapeType shapeType)
+        private static Shape CreateShape(ShapeType shapeType) // Tar emot argument som bestämer vilken figur som ska skapas. "Målar" ut namnet på den geometriska figur man har valt med hjälp av en switch sats och låter sedan användaren skriva in längden och bredden.
         {
             switch(shapeType)
             {
-            case ShapeType.Ellipse:
+            case ShapeType.Ellipse:  //om användaren valde Ellipse så har shapeType värdet ShapeType.Ellipse. Detta är ett lättare sätt att förstå koden än om switchen använde sig av 0,1,2,3 etc då man ser vad det är den kollar.
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("========================================");
             Console.WriteLine("=                Ellipse               =");
             Console.WriteLine("========================================");
             break;
 
-            case ShapeType.Rectangle:
+            case ShapeType.Rectangle: //samma som ovan fast för Rectangle
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("========================================");
             Console.WriteLine("=               Rectangle              =");
             Console.WriteLine("========================================");
             break;
             }
-            Shape myShape = null;
             Console.ResetColor();
             double length = ReadDoubleGreaterThanZero(string.Format("Ange längden på din {0}:", shapeType));
             double width = ReadDoubleGreaterThanZero(string.Format("Ange bredden på din {0}:", shapeType));
             if (shapeType == ShapeType.Rectangle)
             {
-                myShape = new Rectangle(length, width);
+                return new Rectangle(length, width);  //skickar med längd och bredd till konstruktorn för vald figur
             }
             if (shapeType == ShapeType.Ellipse)
             {
-                myShape = new Ellipse(length, width);
+                return new Ellipse(length, width); //skickar med längd och bredd till konstruktorn för vald figur
             }
-            return myShape;
+            return null;
         }
-        private static void ViewMenu()
+        private static void ViewMenu() //skriver ut menyn
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("========================================");
@@ -98,27 +93,27 @@ namespace Geometriska_figurer
             Console.WriteLine("\n 0. Avsluta.\n 1. Ellips\n 2. Rektangel.");
             Console.WriteLine("========================================");
         }
-        private static void ViewShapeDetail(Shape shape)
+        private static void ViewShapeDetail(Shape shape)//skriver ut resultaten.
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("========================================");
             Console.WriteLine("=               Detaljer               =");
             Console.WriteLine("========================================");
             Console.ResetColor();
-            Console.WriteLine(shape.ToString());//tostring
+            Console.WriteLine(shape.ToString());//anropar och skriver ut det som ToString() returnerar.
             Console.WriteLine("========================================");
         }
-        private static double ReadDoubleGreaterThanZero(string prompt)
+        private static double ReadDoubleGreaterThanZero(string prompt)//Denna metoden returnerar det värde som användaren skriver in så länge man skriver in ett tal som är större än 0.
         {
             double number;
             while (true)
             {
-                Console.WriteLine(prompt);
-                string userInput = Console.ReadLine();
+                Console.WriteLine(prompt); //prompten skriver ut den sträng som skickades med när metoden anropades
+                string userInput = Console.ReadLine(); //användaren skriver in ett värde
                 try
                 {
-                    number = double.Parse(userInput);
-                    if (number <= 0)
+                    number = double.Parse(userInput); // försöker göra om strängen userInput till en double. Funkar inte det kasstas ett undantag
+                    if (number <= 0)//kollar så att numret man skrev in inte är mindre eller lika med 0
                     { Console.WriteLine("FEL! Ange ett tal större än 0!"); }
                     else
                     { return number; }
@@ -126,7 +121,7 @@ namespace Geometriska_figurer
                 catch
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Fel! {0} är inte i rätt format. Ange en siffra större än noll!");
+                    Console.WriteLine("Fel! '{0}' är inte i rätt format. Ange en siffra större än noll!", userInput);
                     Console.ResetColor();
                 }
             }
