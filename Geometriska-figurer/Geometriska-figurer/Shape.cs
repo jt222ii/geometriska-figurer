@@ -14,6 +14,10 @@ namespace Geometriska_figurer
         {
             get;
         }
+        public abstract double Perimeter //hämtar värde från Rectangle.cs eller Ellipse.cs. Abstract kan inte initieras och kräver att man ska överskugga den. 
+        {
+            get;
+        }
         public double Length // När man vill ha värdet på fältet _length så returnerar den _length vill man sätta värdet används set och kollar så att värdet man sätter inte är 0 eller mindre
         {
             get {return _length;}
@@ -23,10 +27,6 @@ namespace Geometriska_figurer
                 {throw new ArgumentException();}
                 _length = value; //kastas inte undantaget sätts _length till sitt nya värde
             }
-        }
-        public abstract double Perimeter //hämtar värde från Rectangle.cs eller Ellipse.cs. Abstract kan inte initieras och kräver att man ska överskugga den. 
-        {
-            get;
         }
         protected Shape(double length, double width) //ger Length och Width de värden som kommit från tidigare konstrukor efter att man skrivit in värdena för längd och bredd
         {
@@ -51,3 +51,4 @@ namespace Geometriska_figurer
     }
     public enum ShapeType { Ellipse, Rectangle } //Enum innehåller ett antal namnivna konstanter som kallas enumerators. 
 }                                                //På detta sättet kan man göra en tydligare och lättare att läsa kod istället för att använda konstanta integers. 
+                                                 //De namngivna konstanterna har värdena 0, 1.

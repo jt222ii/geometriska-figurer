@@ -19,26 +19,28 @@ namespace Geometriska_figurer
                 try
                 {
                     userSelection = int.Parse(choice); //gör om strängen choice till int - funkar inte det kastas ett undantag.
+                    switch (userSelection) //userselection är det som användaren gav ett värde ovan. 
+                    {
+                        case 0: //avslutar programmet
+                            return;
+                        case 1://Om användaren valde alternativ 1 anropas metoden ViewShapeDetail där värdena från CreateShape där man skickar med ShapeType.Ellipse skickas med.
+                            ViewShapeDetail(CreateShape(ShapeType.Ellipse)); //CreateShape körs före ViewShapeDetails.
+                            break;
+                        case 2://Om användaren valde alternativ 2 anropas metoden ViewShapeDetail där värdena från CreateShape där man skickar med ShapeType.Rectangle skickas med.           
+                            ViewShapeDetail(CreateShape(ShapeType.Rectangle));   //CreateShape körs före ViewShapeDetails.
+                            break;
+                        default: //körs om det inte är något av de ovanstående
+                            Console.WriteLine("var snäll och ange ett av valen 0-2!");
+                            break;
+                    }
                 }
                 catch
                 {
-                    throw new ArgumentException();      //undantag kastas
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Fel! '{0}' är inte i rätt format. Ange en siffra större än noll!", choice);
+                    Console.ResetColor();
                 }
-
-                switch (userSelection) //userselection är det som användaren gav ett värde ovan. 
-                {
-                    case 0: //avslutar programmet
-                        return;
-                    case 1://Om användaren valde alternativ 1 anropas metoden ViewShapeDetail där värdena från CreateShape där man skickar med ShapeType.Ellipse skickas med.
-                        ViewShapeDetail(CreateShape(ShapeType.Ellipse)); //CreateShape körs före ViewShapeDetails.
-                        break;
-                    case 2://Om användaren valde alternativ 2 anropas metoden ViewShapeDetail där värdena från CreateShape där man skickar med ShapeType.Rectangle skickas med.           
-                        ViewShapeDetail(CreateShape(ShapeType.Rectangle));   //CreateShape körs före ViewShapeDetails.
-                        break;
-                    default: //körs om det inte är något av de ovanstående
-                        Console.WriteLine("var snäll och ange ett av valen 0-2!");
-                        break;
-                }              
+           
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine("\nTryck valfri tangent för ny uträkning - ESC avslutar ");
                 Console.ResetColor();
@@ -71,6 +73,8 @@ namespace Geometriska_figurer
             Console.ResetColor();
             double length = ReadDoubleGreaterThanZero(string.Format("Ange längden på din {0}:", shapeType));
             double width = ReadDoubleGreaterThanZero(string.Format("Ange bredden på din {0}:", shapeType));
+
+            
             if (shapeType == ShapeType.Rectangle)
             {
                 return new Rectangle(length, width);  //skickar med längd och bredd till konstruktorn för vald figur
