@@ -38,7 +38,7 @@ namespace Geometriska_figurer
             get { return _width; }
             set 
             {
-                if (value<0)
+                if (value<=0)
                 {throw new ArgumentException();}
                 _width = value;
             }
@@ -46,7 +46,7 @@ namespace Geometriska_figurer
         }
         public override string ToString() //override skriver över ToString som redan finns i object
         {
-            return string.Format("Längd   : {0,8}\nBredd   : {1,8}\nOmkrets : {2,8}\nArea    : {3,8}", Length, Width, Perimeter, Area);
+            return string.Format("Längd   : {0,8}\nBredd   : {1,8}\nOmkrets : {2,8:F1}\nArea    : {3,8:F1}", Length, Width, Perimeter, Area);
         }
     }
     public enum ShapeType { Ellipse, Rectangle } //Enum innehåller ett antal namnivna konstanter som kallas enumerators. 

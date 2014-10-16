@@ -16,6 +16,7 @@ namespace Geometriska_figurer
                 ViewMenu(); // skriver ut menyn
                 int userSelection;
                 string choice = Console.ReadLine(); // användaren skriver in något av valen 0-2. Kollar sedan genom en try-catch så att det är ett giltigt heltal 
+
                 try
                 {
                     userSelection = int.Parse(choice); //gör om strängen choice till int - funkar inte det kastas ett undantag.
@@ -38,9 +39,10 @@ namespace Geometriska_figurer
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.WriteLine("Fel! '{0}' är inte i rätt format. Ange en siffra större än noll!", choice);
-                    Console.ResetColor();
+                    Console.ResetColor();      //undantag kastas
                 }
-           
+                
+
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine("\nTryck valfri tangent för ny uträkning - ESC avslutar ");
                 Console.ResetColor();
@@ -49,7 +51,6 @@ namespace Geometriska_figurer
            // CreateShape();
 
             //ViewDetail();
-
 
         }
         private static Shape CreateShape(ShapeType shapeType) // Tar emot argument som bestämer vilken figur som ska skapas. "Målar" ut namnet på den geometriska figur man har valt med hjälp av en switch sats och låter sedan användaren skriva in längden och bredden.
